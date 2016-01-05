@@ -1,8 +1,8 @@
 package strategy;
 
-public class InsertSort implements Strategy {
+public class BubbleSort implements Strategy {
 
-	public InsertSort() {
+	public BubbleSort() {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -10,22 +10,22 @@ public class InsertSort implements Strategy {
 	public int[] sortWithStrategy(int[] toSort) {
 		System.out.println(this.getClass().getName());
 		Strategy.printArray("before", toSort);
-		int i,j,temp;
 		int n = toSort.length;
-		for(i=1;i<n;i++){
-			temp = toSort[i];
-			j=i-1;
-			while(j>=0 && temp<toSort[j]){
-				toSort[j+1]=toSort[j];
-				j--;
+		int temp;
+		for (int i = 0; i < n; i++) {
+			for (int j = n-1; j > i; j--) {
+				if(toSort[j]<toSort[j-1]){
+					temp = toSort[j];
+					toSort[j]=toSort[j-1];
+					toSort[j-1]=temp;
+				}
+				
 			}
-			toSort[j+1]=temp;
+			
 		}
 		Strategy.printArray("after", toSort);
 		System.out.println("============================================");
 		return toSort;
 	}
-
-	
 
 }
