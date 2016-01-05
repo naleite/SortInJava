@@ -8,7 +8,7 @@ public class QuickSort implements Strategy {
 
 	@Override
 	public int[] sortWithStrategy(int[] toSort) {
-		System.out.println("Quick Sort:");
+		System.out.println(this.getClass().getName());
 		Strategy.printArray("before",toSort);
 		quickSort(toSort, 0, toSort.length-1);
 		Strategy.printArray("after",toSort);
