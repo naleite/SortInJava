@@ -10,12 +10,14 @@ public class QuickSort implements Strategy {
 	public int[] sortWithStrategy(int[] toSort) {
 		System.out.println(this.getClass().getName());
 		Strategy.printArray("before",toSort);
-		quickSort(toSort, 0, toSort.length-1);
+		//quickSort(toSort, 0, toSort.length-1);
+		quick_sort(toSort, 0, toSort.length-1);
 		Strategy.printArray("after",toSort);
 		System.out.println("==================================================");
 		return toSort;
 	}
 
+	@Deprecated
 	private void quickSort(int[] array,int start,int end)  {
 		System.out.print("start="+start+",end="+end);
 		Strategy.printArray("",array);
@@ -54,11 +56,11 @@ public class QuickSort implements Strategy {
 
 		while (i < j) {
 
-			while (array[i] <= pivot & i != end) {// 注意=很重要，否则无限循环
+			while (array[i] <= pivot && i != end) {// 注意=很重要，否则无限循环
 
 				i++;
 
-				if (i == end & array[i] < pivot) {
+				if (i == end && array[i] < pivot) {
 
 					// 非常重要，这是极端情况，考虑到如果pivot取的是最大值的情况
 
@@ -74,7 +76,7 @@ public class QuickSort implements Strategy {
 
 			}
 
-			while (array[j] >= pivot & j != start) {
+			while (array[j] >= pivot && j != start) {
 
 				j--;
 
@@ -105,6 +107,29 @@ public class QuickSort implements Strategy {
 
 	}
 
+	private void quick_sort(int arr[], int start, int end)  
+	{  
+	    if (start < end)  
+	    {  
+	        //Swap(s[l], s[(l + r) / 2]); //将中间的这个数和第一个数交换 参见注1  
+	        int i = start, j = end, pivot = arr[start];  
+	        while (i < j)  
+	        {  
+	            while(i < j && arr[j] >= pivot) // 从右向左找第一个小于x的数  
+	                j--;    
+	            if(i < j)   
+	                arr[i++] = arr[j];  
+	              
+	            while(i < j && arr[i] < pivot) // 从左向右找第一个大于等于x的数  
+	                i++;    
+	            if(i < j)   
+	                arr[j--] = arr[i];  
+	        }  
+	        arr[i] = pivot;  
+	        quick_sort(arr, start, i - 1); // 递归调用   
+	        quick_sort(arr, i + 1, end);  
+	    }  
+	}  
 	
 	
 }
