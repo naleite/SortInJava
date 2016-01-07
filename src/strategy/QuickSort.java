@@ -112,18 +112,25 @@ public class QuickSort implements Strategy {
 	    if (start < end)  
 	    {  
 	        //Swap(s[l], s[(l + r) / 2]); //将中间的这个数和第一个数交换 参见注1  
-	        int i = start, j = end, pivot = arr[start];  
+	        int i = start, j = end, pivot = arr[i];  
 	        while (i < j)  
 	        {  
-	            while(i < j && arr[j] >= pivot) // 从右向左找第一个小于x的数  
+	            while(i < j && arr[j] > pivot) // 从右向左找第一个小于x的数  
 	                j--;    
-	            if(i < j)   
-	                arr[i++] = arr[j];  
+	            if(i < j)   {
+	            	
+	                arr[i] = arr[j];
+	                i++;
+	                
+	            }
 	              
 	            while(i < j && arr[i] < pivot) // 从左向右找第一个大于等于x的数  
 	                i++;    
-	            if(i < j)   
-	                arr[j--] = arr[i];  
+	            if(i < j) {
+	            	arr[j] = arr[i];
+	            	j--;
+	            }
+	                  
 	        }  
 	        arr[i] = pivot;  
 	        quick_sort(arr, start, i - 1); // 递归调用   
